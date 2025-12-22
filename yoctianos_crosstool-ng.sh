@@ -5,7 +5,7 @@ BASE_DIR="$HOME/yoctianos-arm-none-eabi"
 echo "0. Download DEB packages (if it's nessesary)"
 sudo apt update
 sudo apt install -y git build-essential gperf bison flex texinfo libtool libncurses5-dev python3 \
-                    gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf binutils-arm-linux-gnueabihf
+                    gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf binutils-arm-linux-gnueabihf help2man
 
 echo "1. GIT pull the yoctianos-arm-none-eabi (if it's nessesary)"
 cd $BASE_DIR
