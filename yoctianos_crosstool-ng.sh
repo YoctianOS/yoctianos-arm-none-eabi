@@ -62,6 +62,7 @@ echo "Preparing crosstool-ng..."
 ./bootstrap
 ./configure --enable-local
 make
+./ct-ng distclean || true
 
 # ---------------------------------------------------------
 # 6. Copy the .config file
@@ -79,7 +80,6 @@ cp "$BASE_DIR/.config" "$CTNG_DIR/.config"
 # ---------------------------------------------------------
 echo "Starting crosstool-ng build..."
 cd "$CTNG_DIR"
-./ct-ng distclean || true
 ./ct-ng build
 
 # ---------------------------------------------------------
