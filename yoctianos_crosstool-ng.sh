@@ -96,7 +96,7 @@ if [ ! -d "$TOOLCHAIN_PATH" ]; then
     exit 1
 fi
 
-mv "$TOOLCHAIN_PATH" "$OUTPUT_DIR/yoctianos-arm-none-eabi"
+sudo mv "$TOOLCHAIN_PATH" "$OUTPUT_DIR/yoctianos-arm-none-eabi"
 
 # ---------------------------------------------------------
 # 9. Compress the final toolchain
