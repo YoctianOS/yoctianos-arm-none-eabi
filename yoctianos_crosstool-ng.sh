@@ -8,7 +8,7 @@ git pull
 
 echo "1. Download DEB packages (if it's nessesary)"
 sudo apt update
-sudo apt install -y git build-essential gperf bison flex texinfo libtool libncurses5-dev python3 gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf binutils-arm-linux-gnueabihf help2man
+sudo apt install -y build-essential gperf bison flex texinfo libtool libncurses5-dev python3 gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf binutils-arm-linux-gnueabihf help2man
 
 echo "2a. GIT clone the crosstool-ng (if it's nessesary)"
 cd $HOME
