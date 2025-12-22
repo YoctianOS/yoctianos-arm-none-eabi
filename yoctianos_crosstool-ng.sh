@@ -2,23 +2,15 @@
 
 BASE_DIR="$HOME/yoctianos-arm-none-eabi"
 
-#echo "0. Download Git DEB package (if it's nessesary)"
-#sudo apt update
-#sudo apt install -y git
-
-echo "1. GIT pull the yoctianos-arm-none-eabi (if it's nessesary)"
-cd $BASE_DIR
-git pull
-
-echo "2. Download DEB packages (if it's nessesary)"
+echo "1. Download DEB packages (if it's nessesary)"
 sudo apt update
-sudo apt install -y build-essential gperf bison flex texinfo libtool libncurses5-dev python3 gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf binutils-arm-linux-gnueabihf help2man libtool
+sudo apt install -y build-essential gperf bison flex texinfo libncurses5-dev python3 gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf binutils-arm-linux-gnueabihf help2man libtool libtool-bin automake autoconf
 
-echo "3a. GIT clone the crosstool-ng (if it's nessesary)"
+echo "2. GIT clone the crosstool-ng (if it's nessesary)"
 cd $HOME
 git clone https://github.com/crosstool-ng/crosstool-ng.git
 
-echo "3b. GIT pull the crosstool-ng (if it's nessesary)"
+echo "3. GIT pull the crosstool-ng (if it's nessesary)"
 cd $HOME/crosstool-ng
 git pull
 
