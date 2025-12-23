@@ -19,22 +19,22 @@ fi
 # ---------------------------------------------------------
 # 2. Ensure the system is Ubuntu 22.04
 # ---------------------------------------------------------
-#
-# if ! command -v lsb_release >/dev/null 2>&1; then
-#     echo "ERROR: lsb_release command not found. Install 'lsb-release'."
-#     exit 1
-# fi
-#
-# UBU_VERSION=$(lsb_release -rs)
-#
-# if [ "$UBU_VERSION" != "22.04" ]; then
-#     echo "ERROR: This script must be run on Ubuntu 22.04."
-#     echo "Detected version: $UBU_VERSION"
-#     exit 1
-# fi
-#
-# echo "Ubuntu 22.04 detected."
-#
+
+if ! command -v lsb_release >/dev/null 2>&1; then
+    echo "ERROR: lsb_release command not found. Install 'lsb-release'."
+    exit 1
+fi
+
+UBU_VERSION=$(lsb_release -rs)
+
+if [ "$UBU_VERSION" != "22.04" ]; then
+    echo "ERROR: This script must be run on Ubuntu 22.04."
+    echo "Detected version: $UBU_VERSION"
+    exit 1
+fi
+
+echo "Ubuntu 22.04 detected."
+
 # ---------------------------------------------------------
 # 3. Install required packages
 # ---------------------------------------------------------
