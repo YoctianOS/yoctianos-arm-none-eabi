@@ -28,12 +28,12 @@ fi
 UBU_VERSION=$(lsb_release -rs)
 
 if [ "$UBU_VERSION" != "22.04" ]; then
-    echo "ERROR: This script must be run on Ubuntu 22.04."
+    echo "ERROR: This script must be run on Ubuntu 22.04.X LTS."
     echo "Detected version: $UBU_VERSION"
     exit 1
 fi
 
-echo "Ubuntu 22.04 detected."
+echo "Ubuntu 22.04.X LTS detected."
 
 # ---------------------------------------------------------
 # 3. Install required packages
