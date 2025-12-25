@@ -104,13 +104,15 @@ if [ ! -d "$TOOLCHAIN_PATH" ]; then
     exit 1
 fi
 
+# Move with sudo if necessary, then ensure ownership is the current user
 sudo mv "$TOOLCHAIN_PATH" "$OUTPUT_DIR/yoctianos-arm-none-eabi"
+sudo chown -R "$(id -u):$(id -g)" "$OUTPUT_DIR/yoctianos-arm-none-eabi" || true
 
 # ---------------------------------------------------------
-# 9. Make all files and directories executable
+# 9. Set safe permissions (do NOT make everything executable)
 # ---------------------------------------------------------
 
-echo "Applying chmod +x to all files and directories..."
+echo "Applying safe permissions to files and directories..."
 
 TARGET_DIR="$OUTPUT_DIR/yoctianos-arm-none-eabi"
 
@@ -119,11 +121,21 @@ if [ ! -d "$TARGET_DIR" ]; then
     exit 1
 fi
 
-# Add execute permission to all directories
-find "$TARGET_DIR" -type d -exec chmod +x {} \;
+# Directories: rwxr-xr-x (755)
+find "$TARGET_DIR" -type d -exec chmod 755 {} \;
 
-# Add execute permission to all files
-find "$TARGET_DIR" -type f -exec chmod +x {} \;
+# Regular files: rw-r--r-- (644)
+find "$TARGET_DIR" -type f -exec chmod 644 {} \;
+
+# Make executables executable: common bin/sbin/libexec paths
+# Set 755 for files under bin, sbin, libexec, and any file with a shebang
+find "$TARGET_DIR" -type f \( -path "*/bin/*" -o -path "*/sbin/*" -o -path "*/libexec/*" \) -exec chmod 755 {} \;
+
+# Also detect scripts with a shebang and make them executable
+# (This avoids making libraries or data files executable)
+grep -RIl "^#\!/" "$TARGET_DIR" 2>/dev/null | while read -r script; do
+    chmod 755 "$script" || true
+done
 
 echo "Permissions updated."
 
