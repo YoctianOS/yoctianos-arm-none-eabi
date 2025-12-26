@@ -109,7 +109,24 @@ sudo mv "$TOOLCHAIN_PATH" "$OUTPUT_DIR/yoctianos-arm-none-eabi"
 sudo chown -R "$(id -u):$(id -g)" "$OUTPUT_DIR/yoctianos-arm-none-eabi" || true
 
 # ---------------------------------------------------------
-# 9. Set safe permissions (do NOT make everything executable)
+# 9. Copy License
+# ---------------------------------------------------------
+
+echo "Copy YoctianOS license..."
+
+SRC_DIR="$BASE_DIR/src/yoctianos-arm-none-eabi"
+
+if [ ! -d "$SRC_DIR" ]; then
+    echo "ERROR: SRC directory not found: $SRC_DIR"
+    exit 1
+fi
+
+# Copy with sudo if necessary, then ensure ownership is the current user
+sudo cp "$SRC_DIR" "$OUTPUT_DIR/yoctianos-arm-none-eabi"
+sudo chown -R "$(id -u):$(id -g)" "$OUTPUT_DIR/yoctianos-arm-none-eabi" || true
+
+# ---------------------------------------------------------
+# 10. Set safe permissions (do NOT make everything executable)
 # ---------------------------------------------------------
 
 echo "Applying safe permissions to files and directories..."
@@ -140,7 +157,7 @@ done
 echo "Permissions updated."
 
 # ---------------------------------------------------------
-# 10. Compress the final toolchain
+# 11. Compress the final toolchain
 # ---------------------------------------------------------
 
 echo "Compressing final toolchain..."
