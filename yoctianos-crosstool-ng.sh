@@ -122,7 +122,7 @@ if [ ! -d "$SRC_DIR" ]; then
 fi
 
 # Copy with sudo if necessary, then ensure ownership is the current user
-sudo cp "$SRC_DIR" "$OUTPUT_DIR/yoctianos-arm-none-eabi"
+sudo cp -r "$SRC_DIR" "$OUTPUT_DIR"
 sudo chown -R "$(id -u):$(id -g)" "$OUTPUT_DIR/yoctianos-arm-none-eabi" || true
 
 # ---------------------------------------------------------
