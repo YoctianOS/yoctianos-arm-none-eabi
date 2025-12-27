@@ -138,11 +138,9 @@ if [ ! -d "$TARGET_DIR" ]; then
     exit 1
 fi
 
-# Directories: rwxr-xr-x (755)
-find "$TARGET_DIR" -type d -exec sudo chmod 755 {} \;
+find "$TARGET_DIR" -type d -exec chmod 777 {} \;
 
-# Regular files: rwxr-xr-x (755)
-find "$TARGET_DIR" -type f -exec sudo chmod 755 {} \;
+find "$TARGET_DIR" -type f -exec chmod 777 {} \;
 
 echo "Permissions updated."
 
