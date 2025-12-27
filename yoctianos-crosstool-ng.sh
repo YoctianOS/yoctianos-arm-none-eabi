@@ -39,12 +39,16 @@ echo "Ubuntu 22.04.X LTS detected."
 # 3. Install required packages
 # ---------------------------------------------------------
 
+if [ "$YOCTIANOS_DEV_NUM" != "2" ]; then
 echo "Installing required packages..."
 sudo apt update
 sudo apt install -y \
     build-essential gperf bison flex texinfo libncurses5-dev python3 \
     gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf binutils-arm-linux-gnueabihf \
     help2man libtool libtool-bin automake autoconf git
+if
+
+export YOCTIANOS_DEV_NUM="2"
 
 # ---------------------------------------------------------
 # 4. Clone crosstool-ng if missing
