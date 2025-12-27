@@ -1,6 +1,6 @@
 #!/bin/sh
 
-set -e  # Stop on any error
+set -e
 
 BASE_DIR="$HOME/yoctianos-arm-none-eabi"
 CTNG_DIR="$HOME/crosstool-ng"
@@ -141,18 +141,8 @@ fi
 # Directories: rwxr-xr-x (755)
 find "$TARGET_DIR" -type d -exec chmod 755 {} \;
 
-# Regular files: rw-r--r-- (644)
-find "$TARGET_DIR" -type f -exec chmod 644 {} \;
-
-# Make executables executable: common bin/sbin/libexec paths
-# Set 755 for files under bin, sbin, libexec, and any file with a shebang
-find "$TARGET_DIR" -type f \( -path "*/bin/*" -o -path "*/sbin/*" -o -path "*/libexec/*" \) -exec chmod 755 {} \;
-
-# Also detect scripts with a shebang and make them executable
-# (This avoids making libraries or data files executable)
-grep -RIl "^#\!/" "$TARGET_DIR" 2>/dev/null | while read -r script; do
-    chmod 755 "$script" || true
-done
+# Regular files: rwxr-xr-x (755)
+find "$TARGET_DIR" -type f -exec chmod 755 {} \;
 
 echo "Permissions updated."
 
