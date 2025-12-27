@@ -105,6 +105,7 @@ if [ ! -d "$TOOLCHAIN_PATH" ]; then
 fi
 
 # Move with sudo if necessary, then ensure ownership is the current user
+sudo rm -rf "$OUTPUT_DIR/yoctianos-arm-none-eabi"
 sudo mv "$TOOLCHAIN_PATH" "$OUTPUT_DIR/yoctianos-arm-none-eabi"
 sudo chown -R "$(id -u):$(id -g)" "$OUTPUT_DIR/yoctianos-arm-none-eabi" || true
 
