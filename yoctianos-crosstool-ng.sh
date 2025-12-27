@@ -126,10 +126,10 @@ sudo cp -r "$SRC_DIR" "$OUTPUT_DIR"
 sudo chown -R "$(id -u):$(id -g)" "$OUTPUT_DIR/yoctianos-arm-none-eabi" || true
 
 # ---------------------------------------------------------
-# 10. Set safe permissions (do NOT make everything executable)
+# 10. Set permissions
 # ---------------------------------------------------------
 
-echo "Applying safe permissions to files and directories..."
+echo "Applying permissions to files and directories..."
 
 TARGET_DIR="$OUTPUT_DIR/yoctianos-arm-none-eabi"
 
@@ -139,10 +139,10 @@ if [ ! -d "$TARGET_DIR" ]; then
 fi
 
 # Directories: rwxr-xr-x (755)
-find "$TARGET_DIR" -type d -exec chmod 755 {} \;
+find "$TARGET_DIR" -type d -exec sudo chmod 755 {} \;
 
 # Regular files: rwxr-xr-x (755)
-find "$TARGET_DIR" -type f -exec chmod 755 {} \;
+find "$TARGET_DIR" -type f -exec sudo chmod 755 {} \;
 
 echo "Permissions updated."
 
